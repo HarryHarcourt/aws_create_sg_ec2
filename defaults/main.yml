@@ -83,12 +83,12 @@ webserver: { name: WebServers,
     image: ami-b55a51cc,
     count: 1,
     exact_count: 1,
-    count_tag:
-      - environment: "{{ environ }}"
-      - purpose: "webserver"
-    instance_tags: 
-      - environment: "{{ environ }}"
-      - purpose: webserver
+    count_tags: { environment: demo, purpose: webserver },
+#      - environment: "{{ environ }}"
+#      - purpose: "webserver"
+    instance_tags: { environment: demo, purpose: webserver }
+#      - environment: "{{ environ }}"
+#      - purpose: webserver
   }
 
 appserver: { name: Application Server,
@@ -99,14 +99,12 @@ appserver: { name: Application Server,
     image: ami-b55a51cc,
     count: 1,
     exact_count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
-      purpose: appserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
-      purpose: appserver
-    }
+    count_tags: { environment: demo, purpose: appserver },
+#      environment: "{{ environ }}",
+#      purpose: appserver
+    instance_tags: { environment: demo, purpose: appserver }
+#      environment: "{{ environ }}",
+#      purpose: appserver
   }
 
 dbserver: { name: Database Server,
@@ -117,29 +115,25 @@ dbserver: { name: Database Server,
     image: ami-b55a51cc,
     count: 1,
     exact_count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
-      purpose: oradbserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
-      purpose: oradbserver
-    }
+    count_tags: { environment: demo, purpose: oradbserver },
+#      environment: "{{ environ }}",
+#      purpose: oradbserver
+    instance_tags: { environment: demo, purpose: oradbserver }
+#      environment: "{{ environ }}",
+#      purpose: oradbserver
   }
 msserver: { name: MS Database Server,
     description: Server image templates for MS SQL DB Server,
-    security_group: MSSQLservers,
+    security_group: MSSQLDatabases,
     key_name: BenWright,
     instance_type: t2.micro,
     image: ami-c4ffe3bd,
     count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
-      purpose: mssqlserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
-      purpose: mssqlserver
-    }
+    count_tags: { environment: demo, purpose: mssqlserver },
+#      environment: "{{ environ }}",
+#      purpose: mssqlserver
+    instance_tags: { environment: demo, purpose: mssqlserver }
+#      environment: "{{ environ }}",
+#      purpose: mssqlserver
   }
 
