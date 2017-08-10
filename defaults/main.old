@@ -74,72 +74,63 @@ aws_security_groups:
         to_port: 1443
         cidr_ip: internal
 
-#instance_server_create:
-webserver: { name: WebServers,
-    description: Server image templates for Web Servers,
-    security_group: Webservers,
-    key_name: BenWright,
-    instance_type: t2.micro,
-    image: ami-b55a51cc,
-    count: 1,
-    exact_count: 1,
+instance_server_create:
+  - name: WebServers
+    description: Server image templates for Web Servers
+    security_group: Webservers
+    key_name: BenWright
+    instance_type: t2.micro
+    image: ami-b55a51cc
+    count: 1
+    exact_count: 1
     count_tag:
-      - environment: "{{ environ }}"
-      - purpose: "webserver"
-    instance_tags: 
-      - environment: "{{ environ }}"
-      - purpose: webserver
-  }
+      environment: "{{ environ }}"
+      purpose: webserver
+    instance_tags:
+      environment: "{{ environ }}"
+      purpose: webserver
 
-appserver: { name: Application Server,
-    description : Server image templates for Application Servers,
-    security_group: Appservers,
-    key_name: BenWright,
-    instance_type: t2.micro,
-    image: ami-b55a51cc,
-    count: 1,
-    exact_count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
+  - name: Application Server
+    description : Server image templates for Application Servers
+    security_group: Appservers
+    key_name: BenWright
+    instance_type: t2.micro
+    image: ami-b55a51cc
+    count: 1
+    exact_count: 1
+    count_tag:
+      environment: "{{ environ }}"
       purpose: appserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
+    instance_tags:
+      environment: "{{ environ }}"
       purpose: appserver
-    }
-  }
 
-dbserver: { name: Database Server,
-    description: Server image templates for Linux DB Server,
-    security_group: OraDBservers,
-    key_name: BenWright,
-    instance_type: t2.micro,
-    image: ami-b55a51cc,
-    count: 1,
-    exact_count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
+  - name: Database Server
+    description: Server image templates for Linux DB Server
+    security_group: OraDBservers
+    key_name: BenWright
+    instance_type: t2.micro
+    image: ami-b55a51cc
+    count: 1
+    exact_count: 1
+    count_tag:
+      environment: "{{ environ }}"
       purpose: oradbserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
+    instance_tags:
+      environment: "{{ environ }}"
       purpose: oradbserver
-    }
-  }
-msserver: { name: MS Database Server,
-    description: Server image templates for MS SQL DB Server,
-    security_group: MSSQLservers,
-    key_name: BenWright,
-    instance_type: t2.micro,
-    image: ami-c4ffe3bd,
-    count: 1,
-    count_tag: {
-      environment: "{{ environ }}",
+
+  - name: MS Database Server
+    description: Server image templates for MS SQL DB Server 
+    security_group: MSSQLservers
+    key_name: BenWright
+    instance_type: t2.micro
+    image: ami-c4ffe3bd
+    count: 1
+    count_tag:
+      environment: "{{ environ }}"
       purpose: mssqlserver
-    }
-    instance_tags: {
-      environment: "{{ environ }}",
+    instance_tags:
+      environment: "{{ environ }}"
       purpose: mssqlserver
-    }
-  }
 

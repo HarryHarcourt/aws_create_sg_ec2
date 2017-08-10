@@ -37,13 +37,13 @@
 
 # Create our Servers from the templates
 
-#- name: Getting the facts from the defaults via the compute template
-#  set_fact:
-#    from_template: "{{ lookup('template', './compute.j2') }}"
-#  vars:
-#    to_template_instance_server_create: "{{ instance_server_create }}"
-#  tags:
-#    - create
+- name: Getting the facts from the defaults via the compute template
+  set_fact:
+    from_template: "{{ lookup('template', './compute.j2') }}"
+  vars:
+    to_template_instance_server_create: "{{ instance_server_create }}"
+  tags:
+    - create
 
 - name: Provision EC2 Instance
   ec2:
@@ -60,9 +60,6 @@
       purpose: "{{ item.purpose }}"
     instance_tags: "{{ item.instance_tags }}"
   with_items:
-    - "{{ webserver }}"
-    - "{{ appserver }}"
-    - "{{ dbserver }}"
-    - "{{ msserver }}"
+    - "{{ from_template.instance_server_create }}"
   tags:
     - create
