@@ -52,13 +52,12 @@
     key_name: "{{ item.key_name }}"
     instance_type: "{{ item.instance_type }}"
     image: "{{ item.image }}"
+    state: present
     wait: yes
     wait_timeout: 300
 #    count: "{{ item.count }}"
-    exact_count: 1
+    exact_count: "{{ item.exact_count }}"
     count_tag: "{{ item.count_tags }}"
-#      environment: "{{ item.environment }}"
-#      purpose: "{{ item.purpose }}"
     instance_tags: "{{ item.instance_tags }}"
   with_items:
     - "{{ webserver }}"

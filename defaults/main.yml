@@ -129,6 +129,7 @@ msserver: { name: MS Database Server,
     instance_type: t2.micro,
     image: ami-c4ffe3bd,
     count: 1,
+    exact_count: 1,
     count_tags: { environment: demo, purpose: mssqlserver },
 #      environment: "{{ environ }}",
 #      purpose: mssqlserver
